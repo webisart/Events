@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebGL and Three.js 101</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <script src='slides.js'></script>
+  <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono&v2">
+</head>
+<body style="display: none">
+
+<section class='slides layout-regular'>
+
+  <article id="title" class="title">
+    <div class="left-aligned">
+      <h1 class="maintitle">WebGL and Three.js 101</h1>
+      <br>
+      <p class="maintitle">Matteo Bertello</p>
+      <p class="maintitle">WebIsArt 04.16</p>
+    </div>
+  </article>
+
+  <article>
+      <h3>Who am I?</h3>
+        <p>
+        Matteo Bertello
+        <br>
+        Computer Science Degree at Uniud
+        </p>
+        <br>
+        <p>
+        3D Graphics Developer (Desktop, Mobile and Web)
+        <br>
+        Virtual Reality Content Developer
+        <br>
+        Technical Consultant
+        <br>
+        NOT a Web Developer (but developed for the web)
+        <br>
+        NOT an Artist
+        </p>
+        <br>
+        <p>
+        Twitter: <a href="https://twitter.com/Corralx" target="_blank">@Corralx</a>
+        <br>
+        GitHub: <a href="https://github.com/corralx" target="_blank">https://github.com/corralx</a>
+        </p>
+  </article>
+
+  <article>
+  <h3>What we'll see today ...</h3>
+  <ul style="margin-left: 10%; margin-top: 10%">
+    <li style="margin-top: 20px">What is WebGL</li>
+    <li style="margin-top: 20px">What is Three.js</li>
+    <li style="margin-top: 20px">Three.js basic setup</li>
+    <li style="margin-top: 20px">Where can we go?</li>
+  </ul>
+  </article>
+
+  <article>
+  <h3>... and what we won't!</h3>
+  <ul style="margin-left: 10%; margin-top: 10%">
+    <li style="margin-top: 20px">How to write idiomatic Javascript</li>
+    <li style="margin-top: 20px">How WebGL works under the hood</li>
+    <li style="margin-top: 20px">No fancy effects How-To</li>
+  </ul>
+  <p style="margin-top: 10%">A basic crash course in 3D Graphics requires the whole day (and probably even more)!</p>
+  </article>
+
+  <article>
+    <h3>WebGL</h3>
+    <br>
+    <p>Javascript API to access GPU features</p>
+    <p>Not intrusive for web pages, it's just a <span style="background: rgb(245, 242, 240); border: 1px solid rgb(224, 224, 224);"><span style="color: rgb(153,153,153);"><</span><span style="color: rgb(153,0,85);">canvas</span><span style="color: rgb(153,153,153);">></span></span> element!</p>
+    <p>Built from the same people responsible for OpenGL</p>
+    <p>Strictly based around OpenGL ES 2.0 API...</p>
+    <p>...but this means it shares the complexity too!</p>
+  </article>
+
+  <article>
+    <h3>WebGL Support</h3>
+    <img src="images/webgl_support.png" style="width:100%; height:auto; margin-top: 5%"></iframe>
+  </article>
+
+  <article>
+    <h3>Three.js to the rescue!</h3>
+    <p>A Javascript library for 3D Graphics inside the Browser</p>
+    <p>Wraps WebGL (and more!) under the hood, but provides higher level utilities</p>
+    <p>Built to be easy to use and to work everywhere</p>
+    <p>Website: <a href="http://threejs.org/">http://threejs.org/</a></p>
+    <p>GitHub: <a href="https://github.com/mrdoob/three.js/" target="_blank">https://github.com/mrdoob/three.js/</a></p>
+  </article>
+
+  <article>
+    <h3>Why Three.js?</h3>
+    <p>Lots of alternatives but Three.js is the standard de facto</p>
+    <p>Development is still pretty active</p>
+    <p>Lots of tutorial/examples/community driven content</p>
+    <p>Exposes high level concepts to work with (Scene, Geometry, Camera, Lights, Materials, ...)</p>
+    <p>Lots of support by the community (Mesh/Texture/Material exporter for common 3D Graphics tools)</p>
+  </article>
+
+  <article>
+    <h3>So it begins</h3>
+    <iframe src="slides/basic_example.html"></iframe>
+  </article>
+
+  <article>
+    <h3>Lets break this down</h3>
+    <p>We create a Renderer and attach its canvas to the page</p>
+    <pre>
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);</pre>
+    <p>You can see the Renderer as your GPU!</p>
+    <p>Then we need a camera to look from</p>
+    <pre>
+    // Params: (field_of_view, aspect_ratio, near_plane, far_plane)
+    camera = new THREE.PerspectiveCamera(75,
+      window.innerWidth / window.innerHeight, 0.1, 1000);</pre>
+  </article>
+
+  <article>
+    <h3>Lets break this down</h3>
+    <p>Create something to render</p>
+    <pre>
+    geometry = new THREE.BoxGeometry(1, 1, 1);
+    material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    cube = new THREE.Mesh(geometry, material);</pre>
+    <p>And a scene to contain everything</p>
+    <pre>
+    scene = new THREE.Scene();
+    scene.add(cube);</pre>
+    <p>And finally draw it</p>
+    <pre>
+    renderer.render(scene, camera);</pre>
+  </article>
+
+  <article>
+    <h3>Moving things around</h3>
+    <p>We need a clock to measure the time passing</p>
+    <pre>
+    clock = new THREE.Clock();</pre>
+    <p>Then we can rotate our cube based on the time</p>
+    <pre>
+    var delta = clock.getDelta();
+    cube.rotation.x += 1.0 * delta;
+    cube.rotation.y += 0.7 * delta;</pre>
+    <p>But how do we render interactively?</p>
+  </article>
+
+  <article>
+    <h3>Moving things around</h3>
+    <p>Don't use a while loop (just don't)</p>
+    <pre>
+    while (true)
+      renderer.render(scene, camera);</pre>
+    <p>Don't use setTimeout either</p>
+    <pre>
+    setTimeout(render, 1000 / 60);</pre>
+    <p>The browser know what to do and when!</p>
+    <pre>
+    function render()
+    {
+      requestAnimationFrame(render);
+      renderer.render(scene, camera);
+    };</pre>
+  </article>
+
+  <article>
+    <h3>Here we go</h3>
+    <iframe src="slides/rotating_example.html"></iframe>
+  </article>
+
+  <article>
+    <h3>Textures</h3>
+    <p>There is a predefined loader for common image format</p>
+    <pre>
+    var loader = new THREE.TextureLoader();</pre>
+    <p>It tells you when it is done loading</p>
+    <pre>
+    loader.load('path/to/image.jpg',
+    function(texture)
+    {
+      var geometry = new THREE.BoxGeometry(1, 1, 1);
+      var material = new THREE.MeshBasicMaterial({ map: texture });
+      cube = new THREE.Mesh(geometry, material);
+
+      scene.add(cube);
+      render();
+    });
+    </pre>
+  </article>
+
+  <article>
+    <h3>Ain't no web without cats</h3>
+    <iframe src="slides/texture_example.html"></iframe>
+  </article>
+
+  <article>
+    <h3>Let There Be Light</h3>
+    <p>Create a light and add it into the scene</p>
+    <pre>
+    light = new THREE.DirectionalLight(0xffffff, 0.8);
+    light.position.set(1, 1, 1);
+    scene.add(light);</pre>
+    <p>A basic material doesn't respond to light though</p>
+    <p>Lets change it with something more useful</p>
+    <pre>
+    var material = new THREE.MeshPhongMaterial({ color: 0x00ff00,
+      specular: 0xffffff, shininess: 120 });</pre>
+    <p>And we have Spot light and Point light too!</p>
+  </article>
+
+  <article>
+    <h3>Keeps getting better</h3>
+    <iframe src="slides/light_example.html"></iframe>
+  </article>
+
+  <article>
+    <h3>Still looks flat</h3>
+    <iframe src="slides/flat_example.html"></iframe>
+  </article>
+
+  <article>
+    <h3>We can do better</h3>
+    <p>Tell Three.js we want shadows too</p>
+    <pre>
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;</pre>
+    <p>And decide who cast and who receive shadows</p>
+    <pre>
+    cube.castShadow = true;
+    plane.receiveShadow = true;</pre>
+    <p>And finally enable shadows computation for your light</p>
+    <pre>
+    light.castShadow = true;
+    light.shadow.mapSize.width = 1024;
+    light.shadow.mapSize.height = 1024;</pre>
+  </article>
+
+  <article>
+    <h3>Now we are talking</h3>
+    <iframe src="slides/shadow_example.html"></iframe>
+  </article>
+
+  <article>
+    <h3>Shaders</h3>
+    <p>It's a program that runs on the GPU</p>
+    <p>There are six types, but we will introduce only two:<br> Vertex and Fragment shader</p>
+    <p>The language is called GLSL and is C-Like</p>
+    <p>Every graphics API has its own language, but the concepts are the same</p>
+  </article>
+
+  <article>
+    <h3>Vertex Shader</h3>
+    <p>It gets executed for each vertex composing the mesh</p>
+    <p>Decides where to draw the object in the space</p>
+    <p>His task is to project everything to the screen in the end</p>
+    <p>Here is the most simple vertex shader:</p>
+    <pre>
+    &lt;script id="vertex" type="text/x-glsl-vert"&gt;
+    void main()
+    {
+      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+      gl_Position = projectionMatrix * mvPosition;
+    }
+    &lt;/script&gt;</pre>
+  </article>
+
+  <article>
+    <h3>Fragment Shader</h3>
+    <p>It gets executed for each fragment the projected mesh is covering on the screen</p>
+    <p>Decides the color of the pixels on the screen</p>
+    <p>Here is the most simple fragment shader:</p>
+    <pre>
+    &lt;script id="fragment" type="text/x-glsl-frag"&gt;
+    void main()
+    {
+      gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);
+    }
+    &lt;/script&gt;</pre>
+  </article>
+
+  <article>
+    <h3>Shaders and Three.js</h3>
+    <p>Three.js allows custom shaders through the ShaderMaterial</p>
+    <p>The most basic setup just requires the two shader sources</p>
+    <pre>
+  material = new THREE.ShaderMaterial(
+  {
+    vertexShader: document.getElementById('vertex').textContent,
+    fragmentShader: document.getElementById('fragment').textContent
+  });</pre>
+    <p>Three.js adds for you everything else you need including the variables containing all the scene information</p>
+  </article>
+
+  <article>
+    <h3>A simple shader</h3>
+    <iframe src="slides/passthrough_example.html"></iframe>
+  </article>
+
+  <article>
+    <h3>Uniform Variable</h3>
+    <p>We want our calculation to depend on same values<br>(eg. time, colors, lights position and direction)</p>
+    <p>A Uniform is a variable which gets set from the application and stay constant (aka Uniform) along the entire draw call</p>
+    <pre>
+    uniform float time;
+    uniform vec3 color;
+    uniform mat4 camera_transform;</pre>
+    <p>It is visible throughout the entire rendering process so every shader can use his value</p>
+  </article>
+
+  <article>
+    <h3>Uniform Variable</h3>
+    <p>Three.js allows you to define which uniforms you want to get passed to your shader</p>
+    <pre>
+  material = new THREE.ShaderMaterial({
+    uniforms : {
+      time : { type: "f", value: 1.0 },
+      position : { type: "v3", value: new THREE.Vector3(0, 0, 0) }
+    },
+    vertexShader : document.getElementById('vertex').textContent,
+    fragmentShader : document.getElementById('fragment').textContent
+  });</pre>
+    <p>And we can update his value at any time (eg. every frame)</p>
+    <pre>
+  material.uniforms.time.value = time;</pre>
+  </article>
+
+  <article>
+    <h3>Here be dragons</h3>
+    <iframe src="slides/shader_example.html"></iframe>
+  </article>
+
+  <article>
+    <h3>Lets see what's under</h3>
+    <pre>
+    &lt;script id="vertex" type="text/x-glsl-vert"&gt;
+    uniform float time;
+
+    void main()
+    {
+      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+
+      mvPosition.y += sin(time / 500.0 + mvPosition.x / 2.0);
+      mvPosition.x += cos(time / 500.0 + mvPosition.y / 2.0);
+
+      gl_Position = projectionMatrix * mvPosition;
+    }
+    &lt;/script&gt;</pre>
+  </article>
+
+  <article>
+    <h3>Lets see what's under</h3>
+    <pre>
+    &lt;script id="fragment" type="text/x-glsl-frag"&gt;
+    uniform vec2 size;
+
+    void main()
+    {
+      float r = gl_FragCoord.x / size.x;
+      flaot b = gl_FragCoord.y / size.y;
+      gl_FragColor = vec4(r, 0.0, b, 1.0);
+    }
+    &lt;/script&gt;</pre>
+  </article>
+
+  <article>
+    <h3>Re-adding light!</h3>
+    <p>Lets try with a point light this time</p>
+    <pre>
+&lt;script id="vertex" type="text/x-glsl-vert"&gt;
+uniform float time;
+varying vec3 world_position;
+varying vec3 world_normal;
+
+void main()
+{
+  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+  gl_Position = projectionMatrix * mvPosition;
+
+  world_normal = normalMatrix * normal;
+  world_position = (viewMatrix * vec4(position, 1.0)).xyz;
+}    
+&lt;/script&gt;</pre>
+  </article>
+
+  <article>
+    <h3>Re-adding light!</h3>
+    <pre>
+&lt;script id="fragment" type="text/x-glsl-frag"&gt;
+uniform vec2 size;
+varying vec3 world_position;
+varying vec3 world_normal;
+
+void main()
+{
+  vec3 light_position = vec3(0.0, 2.0, -10.0);
+  vec3 color = vec3(1.0, 0.0, 1.0);
+
+  vec3 light_direction = normalize(light_position - world_position);
+  float NdotL = max(dot(world_normal, light_direction), 0.0001);
+
+  gl_FragColor = vec4(color * NdotL, 1.0);
+} 
+&lt;/script&gt;</pre>
+  </article>
+
+  <article>
+    <h3>Black Magic</h3>
+    <iframe src="slides/lighting_example.html"></iframe>
+  </article>
+
+  <article>
+    <h3>Where to learn?</h3>
+    <p><a href="http://www.shadertoy.com" target="_blank"><img style="width: 100%; height: 100%" src="images/shadertoy.jpg"></a></p>
+  </article>
+
+  <article>
+    <h3>A Practical Example</h3>
+    <p>BRDFExplorer, a web based tool built to explore and compare different illumination model</p>
+    <p>Sources: <a href="https://github.com/Corralx/BRDFExplorer" target="_blank">https://github.com/Corralx/BRDFExplorer</a></p>
+    <p>Tool: <a href="https://corralx.github.io/BRDFExplorer/?antialiasing=true" target="_blank">BRDFExplorer</a></p>
+    <p>Built to work on every platform, both desktop and mobile</p>
+    <p>Disclaimer: Use it to understand how to write a shader,<br>not to learn how to write a web application!</p>
+  </article>
+
+  <article>
+    <h2>Questions?</h2>
+  </article>
+
+  <article>
+    <h2>Thanks!</h2>
+  </article>
+
+</section>
+
+</body>
+</html>
