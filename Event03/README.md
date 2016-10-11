@@ -6,6 +6,6 @@
 | **Speaker**                                      |  **Talk**                                                                                                 |
 |:-------------------------------------------------|:----------------------------------------------------------------------------------------------------------|
 | [Tomas Della Vedova](https://github.com/delvedor)    |  Introduzione Iniziativa        |
-| [Alex Prut](https://github.com/alexprut)    |  [Git — version control system](https://github.com/webisart/Event03/git)        |
+| [Alex Prut](https://github.com/alexprut)    |  [Git — version control system](https://github.com/webisart/Events/tree/master/Event03/git)        |
 | Antonio Dal Cin & Gregorio Galante|  All aboard the Ruby on Rails train           |
 

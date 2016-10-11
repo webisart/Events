@@ -1,10 +1,11 @@
-[![web-is-art](https://raw.githubusercontent.com/webisart/graphics/master/Logo/LogoWebIsArt.png)](https://www.facebook.com/webisart.user.group/)  
+[![web-is-art](https://raw.githubusercontent.com/webisart/graphics/master/webisart/Logo/LogoWebIsArt.png)](https://www.facebook.com/webisart.user.group/)  
 
 # Events
 Repository with all the slides divided by event.
 
 - [Event /01](https://github.com/webisart/Events/tree/master/Event01)
 - [Event /02](https://github.com/webisart/Events/tree/master/Event02)
+- [Event /03](https://github.com/webisart/Events/tree/master/Event03)
 
 ### License
 Code and slides are released under the MIT license.
