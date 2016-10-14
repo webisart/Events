@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="some description about the slides">
+    <meta name="author" content="You">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+  </head>
+  <body>
+    <div class="reveal-frame"></div>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2> All aboard the Ruby on Rails train</h2>
+          <h6>Introduzione al linguaggio Ruby e all'utilizzo del framework Ruby on Rails per lo sviluppo di piattaforme server.</h6>
+          <p>	Gregorio Galante & Antonio Dal Cin</p>
+        </section>
+        <section>
+          <section>
+            <h1>Ruby</h1>
+          </section>
+          <section>
+            <p>Ruby è un linguaggio di programmazione nato nel 1993 come progetto personale del giapponese Yukihiro Matsumoto</p>
+          </section>
+          <section>
+            <ul>
+              <li>Open source</li>
+              <li>Orientato agli oggetti</li>
+              <li>Variabili di tipo dinamico</li>
+              <li>Parametri di tipo dinamico</li>
+              <li>Sintassi semplice ed elegante</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Esempio</h4>
+            <h6>Input funzione</h6>
+            <p>array X, oggetto Y</p>
+            <h6>Output funzione</h6>
+            <p>index di Y in X <br> stringa "X non include Y"</p>
+          </section>
+          <section>
+            <h6>Versione 1</h6><img src="img/ruby/sintax_bad.png" width="800">
+          </section>
+          <section>
+            <h6>Versione 2</h6><img src="img/ruby/sintax_not_bad.png" width="800">
+          </section>
+          <section>
+            <h6>Versione 3</h6><img src="img/ruby/sintax.png" width="800">
+          </section>
+          <section>
+            <h4>Qualsiasi oggetto ha un valore</h4>
+            <p>Qualsiasi valore viene percepito come <b>true</b>, ad esclusione di <b>nil</b> e <b>false</b>.</p>
+          </section>
+          <section>
+            <h6>Esempio</h6><img src="img/ruby/variables.png" width="800">
+          </section>
+          <section>
+            <h4>I symbols</h4>
+            <p>In ruby esistono delle speciali stringhe chiamate <b>symbols</b>.</p><img src="img/ruby/symbols.png" width="800">
+          </section>
+          <section>
+            <p>Un <b>symbol</b> è una stringa che occupa sempre lo stesso blocco di memoria.</p>
+            <p>Mentre stampare "I'm a special string" n volte richiede n scritture nella memoria del server, stampare n volte :im_a_special_string ne richiede solo una.</p>
+            <p>I symbol vengono utilizzati quando specifiche stringhe vengono riutilizzate più volte nel codice.</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>OOP in ruby</h2>
+          </section>
+          <section>
+            <h6>Esempio classe</h6><img src="img/ruby-oop/my_super_class.png" width="800">
+          </section>
+          <section>
+            <h4>Variabili d'istanza</h4>
+            <p>	@my_variable</p>
+            <ul>
+              <li><b>attr_reader</b> = visibile ma non scrivibile dall'esterno</li>
+              <li><b>attr_writer</b> = scrivibile ma non visibile dall'esterno</li>
+              <li><b>attr_accessor</b> = visibile e scrivibile dall'esterno</li>
+            </ul>
+          </section>
+          <section>
+            <h6>E se..</h6><img src="img/ruby-oop/my_super_class_private.png" width="800">
+          </section>
+          <section>
+            <p>	<b>@instance_variable_a</b>, <b>@instance_variable_b</b> e <b>@instance_variable_c</b> non sarebbero ne visibili ne scrivibili dall'esterno</p>
+          </section>
+          <section>
+            <h6>Ereditarietà</h6><img src="img/ruby-oop/my_class.png" width="500">
+          </section>
+          <section>
+            <h4>Differenze?</h4><img src="img/ruby-oop/function_with_return.png" width="900">
+            <p>VS</p><img src="img/ruby-oop/function_without_return.png" width="500">
+          </section>
+          <section>
+            <p>Entrambe le funzioni ritornano un valore numerico.</p>
+            <p>In qualsiasi funzione viene eseguito il <b>return</b>. Esso è generato in maniera implicita se non è dichiarato dal programmatore.</p>
+          </section>
+          <section>
+            <h6>Utilizzo delle classi</h6><img src="img/ruby-oop/main.png" width="800">
+          </section>
+          <section>
+            <h6>Output</h6><img src="img/ruby-oop/class_output.png" width="600">
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Librerie in ruby</h2>
+          </section>
+          <section>
+            <p>Nel mondo di ruby le librerie sono definite <b>gemme</b>.</p>
+          </section>
+          <section>
+            <p>Il <b>package manager</b> ufficiale di ruby è <b>rubygems.org</b>.</p>
+          </section>
+          <section>
+            <h4>Definizione delle dipendenze di un'applicazione</h4>
+            <p>Tutte le gemme di una applicazione ruby sono specificate in un file chiamato <b>Gemfile</b></p><img src="img/ruby-gems/gemfile.png" width="700">
+          </section>
+          <section>
+            <p>Per installare le gemme definite nel Gemfile è necessario eseguire il seguente comando nella root del progetto:</p>
+            <pre>cd /User/giggi/my_project</pre>
+            <pre>bundle install</pre>
+          </section>
+          <section>
+            <h6>Utilizzo di una gemma</h6><img src="img/ruby-gems/main.png" width="700">
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Ruby on Rails</h1>
+          </section>
+          <section>
+            <p>Framework <b>open source</b> per applicazioni web scritto in <b>ruby</b>.</p>
+            <p><b>Rails</b> è una gemma di <b>Ruby</b>.</p><img src="img/ruby-gems/gem.gif" width="200" style="box-shadow: 0 0 0px rgba(0,0,0,0)">
+          </section>
+          <section>
+            <ul>
+              <li>Basato sull'<b>architettura MVC</b></li>
+              <li><b>Struttura fissa</b> delle applicazioni</li>
+              <li>Indipendente dalla base di dati</li>
+              <li>Gestione nativa di diversi <b>ambienti di sviluppo</b></li>
+            </ul>
+          </section>
+          <section>
+            <h4>Installazione e inizializzazione di un progetto</h4>
+            <pre>gem install rails</pre>
+            <pre>rails new my_project</pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Architettura MVC in rails</h2>
+          </section>
+          <section>
+            <h4>Tre entità</h4>
+            <p><b>Modelli</b>, <b>Viste</b>, <b>Controller</b></p>
+          </section>
+          <section>
+            <ul>
+              <li>il <b>MODEL</b> fornisce i metodi per accedere ai dati utili all'applicazione</li>
+              <li>il <b>VIEW</b> visualizza i dati contenuti nel model e si occupa dell'interazione con utenti e agenti</li>
+              <li>il <b>CONTROLLER</b> riceve i comandi dell'utente (in genere attraverso il view) e li attua modificando lo stato degli altri due componenti</li>
+            </ul>
+          </section>
+          <section><img src="img/rails-mvc/railsmvc.png" width="500" style="box-shadow: 0 0 0px rgba(0,0,0,0)"></section>
+          <section>
+            <h4>I model</h4>
+            <p>Classi che forniscono i metodi per accedere e manipolare i dati usati dall'applicazione.</p>
+          </section>
+          <section>
+            <h6>Esempio model</h6><img src="img/rails-mvc/model_1.png">
+          </section>
+          <section>
+            <p>In rails tutti i modelli sono sottoclassi di <b>ApplicationRecord</b>.</p>
+            <p>All'interno di un model è possibile accedere agli attributi dell'istanza tramite <b>self.attribute_name</b> o <b>attribute_name</b>.</p>
+          </section>
+          <section>
+            <p><b>ApplicationRecord</b> fornisce tutte le funzioni necessarie a visualizzare, modificare o salvare dati.</p><img src="img/rails-mvc/main.png">
+          </section>
+          <section>
+            <p><b>ApplicationRecord</b> fornisce inoltre delle funzioni di callback utilizzabili prima e dopo il processo di <b>scrittura dei dati</b>.</p><img src="img/rails-mvc/model_2.png" width="700">
+          </section>
+          <section>
+            <h4>Generare un modello</h4>
+            <p>Per velocizzare lo sviluppo rails fornisce un comando utile a generare un modello.</p>
+            <pre>rails generale model MyModel</pre>
+            <p>Oltre a generare la classe del modello, il comando crea un file di <b>migrazione</b> e una classe di <b>test</b>.</p>
+          </section>
+          <section>
+            <h4>I controller</h4>
+            <p>Classi che gestiscono le richieste dei client.</p>
+            <p>Client -> Controller -> Model -> Controller -> Client</p>
+          </section>
+          <section>
+            <h6>Esempio controller</h6><img src="img/rails-mvc/controller_1.png">
+          </section>
+          <section>
+            <h4>render VS redirect_to</h4>
+            <p><b>render</b>: identifica la risorsa da inviare al client come risposta (documento html, json, file generico ecc.).</p>
+            <p><b>redirect_to</b>: esegue un redirect della chiamata ad un'altra <b>action</b> del server.</p>
+          </section>
+          <section>
+            <h4>Gestione dei routes</h4>
+            <p>I routes del server sono specificati in un file <b>routes.rb</b>.</p>
+          </section>
+          <section>
+            <h6>Esempio file routes.rb</h6><img src="img/rails-mvc/routes.png">
+          </section>
+          <section>
+            <h4>Resources</h4>
+            <p><b>resources</b> permette di definire velocemente tutte le routes necessarie a gestire il <b>CRUD</b> di un ipotetico modello.</p>
+          </section>
+          <section>
+            <h6>In pratica equivale a...</h6><img src="img/rails-mvc/resources_routes.png">
+          </section>
+          <section>
+            <h4>Generare un controller</h4>
+            <p>Per velocizzare lo sviluppo rails fornisce un comando utile a generare un controller.</p>
+            <pre>rails generale controller MyController action_1 action_2 action_n</pre>
+            <p>Oltre a generare la classe del controller, il comando crea anche una classe di <b>test</b>.</p>
+          </section>
+          <section>
+            <h4>Le view</h4>
+            <p>File <b>.erb</b> (di default) che vengono compilati ed inviati al client su richiesta.</p>
+          </section>
+          <section>
+            <p>Ogni file che fa parte delle view è disponibile al client solamente attraverso una richiesta alle actions dei controller.</p>
+          </section>
+          <section>
+            <h4>Auto rendering</h4>
+            <p>Ogni <b>action</b> di un controller che non contiene la chiamata a <b>render</b> (o <b>redirect_to</b>) si aspetta di trovare un file da renderizzare all'interno delle view.</p>
+          </section>
+          <section>
+            <h6>Esempio</h6>
+            <p>L'action <b>index</b> all'interno di <b>users_controller.rb</b> si aspetta di trovare un file <b>index.html.erb</b> dentro a <b>view/users</b>.</p>
+            <p>Se index.html.erb non è presente allora proverà a cercare index.json.erb o index.js.erb.</p>
+          </section>
+          <section>
+            <h6>Esempio view</h6><img src="img/rails-mvc/erb_example.png">
+          </section>
+          <section>
+            <p>Per evitare la presenza di blocchi di codice ruby all'interno delle view, rails ha introdotto dei moduli chiamati <b>helpers</b>.</p>
+            <p>Un helper contiene delle semplici funzioni utilizzate per mantenere pulito il codice delle view.</p>
+          </section>
+          <section>
+            <h6>Esempio precedente con l'uso di un helper</h6><img src="img/rails-mvc/helper.png"><img src="img/rails-mvc/view_2.png" width="500">
+          </section>
+          <section>
+            <h4>Generare una gestione del CRUD completa</h4>
+            <p>Uno dei tool più comodi offerti da rails è lo <b>scaffold</b>.</p>
+            <p>Uno scaffold genera automaticamente tutti i file necessari per gestire un modello e i suoi relativi dati.</p>
+          </section>
+          <section>
+            <pre>rails generate scaffold User name:string surname:string age:integer</pre>
+            <p>I file generati da questo comando saranno il modello <b>User.rb</b>, il controller <b>users_controller.rb</b> contenente le actions gestite da resources (<b>index, new, create, edit, update, destroy, show</b>), le view relative alle actions del controller.</p>
+            <p>Dopo l'esecuzione dello scaffold l'aplicazione è pronta per gestire il CRUD degli utenti del sistema.</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>La stuttura delle directory</h2>
+          </section>
+          <section>
+            <h6>I musts</h6>
+            <div style="font-size:18px;text-align:left;">
+              <li><b>app</b> − Contiene le componenti dell'applicazione organizzati in sottocartelle per view (e relativi helpers), controllers e models.</li>
+              <li><b>public</b> − Come la cartella public di un web server, questa cartella contiene tutti i files pubblici e statici del sistema.</li>
+              <li><b>db</b> − Contiene i files relativi ai databases, le loro migrazioni e in certi casi i databases stessi.</li>
+              <li><b>test</b> − Contiene tutti i files necessari alla scrittura dei test software.</li>
+              <li><b>config</b> − Contiene tutto il codice di configurazione dell'applicazione tra i quali: database.yml che gestisce la connessione al database, environment.rb che detta la struttura di ogni ambiente Rails, routes.rb che gestisce il routing delle funzioni.</li>
+              <li><b>lib</b> − Qui vengono contenuto le librerie esterne.</li>
+              <li><b>log</b> − Contiene i files di log relativi al server (server.log) e relativi ad ogni ambiente Rails (development.log, test.log, e production.log).</li>
+              <li><b>tmp</b> − Rails usa questa cartella per i files temporanei che genera.</li>
+              <li><b>vendor</b> − Contiene eventuali files di configurazione (JS/CSS) di alcune librerie esterne.</li>
+            </div>
+          </section>
+          <section><img src="img/directories.jpg" width="850"></section>
+          <section>
+            <h4><b>/app</b> Nel dettaglio</h4>
+            <div style="font-size:20px;text-align:left;">
+              <li><b>app/assets</b> - Contiene gli assets dell'applicazione: immagini, fogli di stile e JS.</li>
+              <li><b>app/controllers</b> − E' in questa cartella che Rails cercherà le classi dei controllers. I controller gestiscono le richieste che arrivano dagli utenti.</li>
+              <li><b>app/models</b> − Qui Rails cercherà le classi dei modelli.</li>
+              <li><b>app/view</b> − E' qui che verranno mantenuti i files delle viste (vista.html.erb) che andranno riempiti con le dovute variabili dai controllers, convertiti in semplice HTML e tornati al browser dell'utente.</li>
+              <li><b>app/helpers</b> − Qui vengono inserite tutte le classi e i metodi "aiutanti" che vengono usati per assistere le classi dell'MVC. Questa suddivisione serve a mantenere il codice dell'MVC il più pulito e snello possibile.</li>
+              <li><b>app/mailers</b> − Qui vengono scritte le eventuali classi relative all'invio di emails da parte dell'applicazione.</li>
+            </div>
+          </section>
+          <section>
+            <h4>/app/<b>Jobs</b></h4>
+            <div><b>Active job</b> è un framework per dichiarare dei processi e smistarli in code di esecuzione. Questi processi possono essere qualsiasi azione programmata e periodica, come una pulizia kontatti, l'invio di emails, o qualsiasi altro processo che può essere scorporato e messo a lavorare in parallelo. E' possibile assegnare ad ogni coda una priorità.</div>
+          </section>
+          <section>
+            <h4>/app/<b>Channels</b> e <b>Action Cables</b></h4>
+            <div><b>Action Cable</b> integra le websockets in armonia con il resto dell'applicazione Rails. Ti permette di scrivere features relative al real-time in Ruby con la stessa logica dei normali metodi Rails, rimanendo performante e scalabile.</div>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Gestione della base di dati</h2>
+          </section>
+          <section>
+            <p>Rails permette di sviluppare applicazioni indipendenti dalla base di dati.</p>
+            <p>I <b>modelli</b> permettono al programmatore di interfacciarsi al db attraverso semplici funzioni.</p>
+          </section>
+          <section>
+            <h6>Funzioni per accesso al db</h6><img src="img/rails-db/model_functions.png" width="800">
+          </section>
+          <section>
+            <p>Le query generate dalle funzioni dei models dipendono dal database utilizzato.</p>
+            <p>La trasformazione delle funzioni in query viene gestita da gemme esterne.</p>
+            <p>In molti casi le gemme che si occupano di tale trasformazioni gestiscono in maniera automatica anche il <b>caching</b> dei dati.</p>
+          </section>
+          <section>
+            <h6>Esempio mysql</h6>
+            <p>Query al modello:</p>
+            <pre>client = Client.first(3)</pre>
+            <p>SQL Relativo:</p>
+            <pre>SELECT * FROM clients ORDER BY clients.id ASC LIMIT 3</pre>
+          </section>
+          <section>
+            <p>L'utilizzo di queste funzioni permette di mantenere il codice dell'applicazione indipendente dal database utilizzato.</p>
+            <p><b>production</b> -> MySQL</p>
+            <p><b>development</b> -> SQLite</p>
+          </section>
+          <section>
+            <h4>Le migrazioni</h4>
+            <p>Rails mantiene memorizzate tutte le modifiche che avvengono al db durante il ciclo di vita del sistema.</p>
+          </section>
+          <section>
+            <p>Per creare una nuova tabella nel database si utilizza il comando:</p>
+            <pre>rails generate migration CreateUsers</pre>
+          </section>
+          <section>
+            <p>Il comando genera un file definito in questo modo: <br><b>20161010140747_create_users.rb</b></p>
+            <p>Il file di migrazione risultante avrà il seguente formato:</p><img src="img/rails-db/migration.png" width="800">
+          </section>
+          <section>
+            <p>Per scrivere effettivamente la tabella nel database deve essere eseguito il comando:</p>
+            <pre>rails db:migrate</pre>
+          </section>
+          <section>
+            <p>L'utilizzo delle <b>migrazioni</b> permette di mantenere sincronizzati rispetto alla struttura del database diversi ambienti di sviluppo. Esse inoltre permettono facilmente di eseguire rollback dello stato del sistema.</p>
+            <p>Esempio rollback:</p>
+            <pre>rake db:migrate:down VERSION=20100905201547</pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Gestione nativa di diversi <b>ambienti di sviluppo</b></h2>
+          </section>
+          <section>
+            <p>Rails supporta nativamente diversi <b>ambienti di sviluppo</b>.</p>
+          </section>
+          <section>
+            <p>	Gli ambienti supportati sono: <b>Test</b>, <b>Development</b> e <b>Production</b>.</p>
+          </section>
+          <section>
+            <p>Per ogni ambiente di sviluppo esiste un file di configurazione dove è possibile impostare regole specifiche per l'ambiente.</p>
+            <p>Esiste inoltre un unico file di configurazione che gestisce le impostazioni condivise tra gli ambienti.</p>
+          </section>
+          <section>
+            <p>Anche i database possono essere diversi per ogni ambiente utlizzato.</p>
+            <p>Di default si utilizza SQLite per gli ambienti di development e test, MySQL o PostgreSQL per l'ambiente di production.</p>
+          </section>
+          <section>
+            <p>Allo stesso modo anche la gestione delle socket può variare dall'ambiente di sviluppo. Solitamente nell'ambiente di production ci si appoggia ad un server redis che gestisce le socket in un thread a parte.</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Altre funzioni utili</h2>
+          </section>
+          <section>
+            <h4>Gestione della <b>cache</b> manuale</h4>
+            <p>E' possibile gestire una <b>cache</b> manualmente per memorizzare i dati più frequentemente utilizzati.</p>
+            <p>Si possono utilizzare diverse tipologie di cache a seconda dell'ambiente di sviluppo (<b>cache in ram, cache su file, cache su server esterni</b>).</p>
+            <p>La cache viene gestita come una collezione di oggetti <b>chiave-valore</b>. I dati sono accessibili tramite una funzione di lettura e una funzione di scrittura.</p>
+          </section>
+          <section>
+            <h4>Gestione delle lingue</h4>
+            <p>Nel file di configurazione dell'applicazione o in quelli dei singoli environment è possibile specificare la <b>lingua</b> utilizzata dal sistema.</p>
+            <p>Rails si occupa in maniera autonoma di tradurre i messaggi gi errore e tutte le informazioni che genera all'utente.</p>
+            <p>Permette inoltre di customizzare le traduzioni manualmente attraverso degli specifici file yaml.</p>
+          </section>
+          <section>
+            <h4>Gestione delle notifiche</h4>
+            <p>Per gestire facilmente le notifiche da mostrare all'utente nelle view vengono utilizzati i <b>flash</b>.</p>
+            <p>I flash sono una collezioni di oggetti chiave-valore che vengono generati nel controller e stampati (se inseriti) nelle view esclusivamente nella prima risposta inviata al client dal server.</p>
+          </section>
+          <section><img src="img/logo.svg" alt="webisart logo" class="logo"></section>
+        </section>
+      </div>
+      <script src="js/vendor/head.min.js"></script>
+      <script src="js/vendor/reveal.min.js"></script>
+      <script src="js/main.js"></script>
+    </div>
+  </body>
+</html>

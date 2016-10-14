@@ -1,0 +1,17 @@
+<h1><%= @user.name %></h1>
+<p><%= @user.description %></p>
+
+<p>
+  <% if @user.is_giggi? %>
+    <%= @user.age %>
+  <% else %>
+    Non puoi sapere l'età dell'utente se non è giggi
+  <% end %>
+</p>
+
+<h1><%= @user.name %></h1>
+<p><%= @user.description %></p>
+
+<p>
+  <%= user_age @user %>
+</p>
