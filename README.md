@@ -6,7 +6,7 @@ Repository with all the slides divided by event.
 - [Event /01](https://github.com/webisart/Events/tree/master/Event01)
 - [Event /02](https://github.com/webisart/Events/tree/master/Event02)
 - [Event /03](https://github.com/webisart/Events/tree/master/Event03)
-- [Event /04](https://github.com/webisart/Events/tree/master/Event03)
+- [Event /04](https://github.com/webisart/Events/tree/master/Event04)
 
 # About
 The mission of the project is to create a User Group of people that love the web and organize weekly/monthly events/meetings/workshops in order to speak/learn modern web techniques, tools and advanced topics regarding the world wide web.
