@@ -1,4 +1,4 @@
-[![web-is-art](https://raw.githubusercontent.com/webisart/graphics/master/webisart/Logo/LogoWebIsArt.png)](https://www.facebook.com/webisart.user.group/)  
+[![web-is-art](https://raw.githubusercontent.com/webisart/graphics/master/webisart/Logo/logo-webisart.png)](https://www.facebook.com/webisart.user.group/)  
 
 # Events
 Repository with all the slides divided by event.
